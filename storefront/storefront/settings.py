@@ -12,14 +12,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
-import dotenv # <- New
 
-# Add .env variables anywhere before SECRET_KEY
-dotenv_file = os.path.join(BASE_DIR, ".env")
-if os.path.isfile(dotenv_file):
-    dotenv.load_dotenv(dotenv_file)
+from dotenv import load_dotenv, find_dotenv
 
-# UPDATE secret key
+load_dotenv(find_dotenv())
+
 SECRET_KEY = os.environ['SECRET_KEY'] # Instead of your actual secret key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
